@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyecto Ambiental 401 — Somos la ola del cambio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+
+    :root {
+      --ocean:    #0a7ea4;
+      --foam:     #e8f7f0;
+      --sand:     #f5f0e8;
+      --kelp:     #1e5c3a;
+      --wave:     #23a6d5;
+      --white:    #ffffff;
+      --dark:     #0d1f2d;
+      --recycle:  #4caf78;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10, 31, 45, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 2.5rem;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--white); font-size: 1.1rem; font-weight: 700;
+      text-decoration: none;
+    }
+    .nav-logo .wave-icon {
+      display: inline-block; font-size: 1.4rem;
+    }
+    nav ul {
+      list-style: none; display: flex; gap: 2rem;
+    }
+    nav ul a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--recycle); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d1f2d 0%, #0a4a6e 50%, #0a7ea4 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      position: relative; overflow: hidden;
+    }
+
+    /* animated wave SVG at bottom */
+    .hero-waves {
+      position: absolute; bottom: 0; left: 0; width: 100%;
+    }
+
+    /* recycling symbol big */
+    .hero-symbol {
+      font-size: 6rem; margin-bottom: 1.2rem;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-18px); }
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      color: var(--white); line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .hero h1 span { color: var(--recycle); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.75);
+      font-weight: 300; letter-spacing: 0.08em;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .hero-badges {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--white); padding: 0.4rem 1rem;
+      border-radius: 999px; font-size: 0.8rem;
+    }
+
+    .btn-primary {
+      background: var(--recycle); color: var(--white);
+      padding: 0.9rem 2.5rem; border-radius: 999px;
+      text-decoration: none; font-weight: 500; font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(76,175,120,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(76,175,120,0.5); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--recycle); font-weight: 500; margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--dark); line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 1rem; line-height: 1.8; color: #3a4a58; max-width: 680px;
+    }
+
+    /* ── QUIÉNES SOMOS ── */
+    #quienes { background: var(--foam); }
+
+    .team-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .team-card {
+      background: var(--white); border-radius: 16px;
+      padding: 2rem 1.2rem; text-align: center;
+      box-shadow: 0 2px 12px rgba(10,126,164,0.08);
+    }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--ocean), var(--recycle));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 1rem;
+    }
+    .team-card h3 { font-size: 1rem; color: var(--dark); margin-bottom: 0.3rem; }
+    .team-card p  { font-size: 0.8rem; color: #6a8090; }
+
+    /* ── TRABAJAMOS ── */
+    #trabajamos { background: var(--white); }
+
+    .focus-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .focus-card {
+      border: 1.5px solid #e0eeea; border-radius: 16px; padding: 1.8rem 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .focus-card:hover { border-color: var(--recycle); box-shadow: 0 4px 18px rgba(76,175,120,0.12); }
+    .focus-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .focus-card h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+    .focus-card p  { font-size: 0.88rem; color: #5a7080; line-height: 1.6; }
+
+    /* ── PROBLEMAS ── */
+    #problemas { background: var(--sand); }
+
+    .problem-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .problem-item {
+      background: var(--white); border-radius: 12px; padding: 1.2rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .problem-num {
+      min-width: 36px; height: 36px; border-radius: 50%;
+      background: var(--ocean); color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .problem-item h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 0.2rem; }
+    .problem-item p  { font-size: 0.85rem; color: #5a7080; line-height: 1.5; }
+
+    /* ── AYUDA ── */
+    #ayuda {
+      background: linear-gradient(135deg, var(--kelp), var(--ocean));
+      color: var(--white);
+    }
+    #ayuda .section-title { color: var(--white); }
+    #ayuda .section-body  { color: rgba(255,255,255,0.8); }
+
+    .actions-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem; margin-top: 2.5rem;
+    }
+    .action-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px; padding: 1.5rem 1.2rem; text-align: center;
+      transition: background 0.2s;
+    }
+    .action-card:hover { background: rgba(255,255,255,0.18); }
+    .action-card .icon { font-size: 2rem; margin-bottom: 0.7rem; }
+    .action-card p { font-size: 0.9rem; color: rgba(255,255,255,0.85); }
+
+    /* ── BLOG / INFÓRMATE ── */
+    #blog { background: var(--white); }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .info-card {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      transition: transform 0.2s;
+    }
+    .info-card a {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .info-card:hover { transform: translateY(-5px); }
+    .info-card-top {
+      height: 120px; display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .c1 { background: linear-gradient(135deg,#23a6d5,#23d5ab); }
+    .c2 { background: linear-gradient(135deg,#1e5c3a,#4caf78); }
+    .c3 { background: linear-gradient(135deg,#0a7ea4,#1e5c3a); }
+    .c4 { background: linear-gradient(135deg,#f5a623,#e8643a); }
+    .info-card-body { padding: 1.2rem 1.2rem 1.5rem; }
+    .info-card-body h3 { font-size: 1rem; color: var(--dark); margin-bottom: 0.4rem; }
+    .info-card-body p  { font-size: 0.85rem; color: #5a7080; line-height: 1.5; }
+
+    /* ── PRENSA ── */
+    #prensa { background: var(--foam); }
+
+    .prensa-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .prensa-card {
+      background: var(--white); border-radius: 14px; padding: 1.5rem;
+      border-left: 4px solid var(--ocean);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .prensa-tag { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ocean); font-weight: 500; margin-bottom: 0.5rem; }
+    .prensa-card h3 { font-size: 0.95rem; color: var(--dark); line-height: 1.4; }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--dark); }
+    #contacto .section-label { color: var(--recycle); }
+    #contacto .section-title { color: var(--white); }
+
+    .contact-info {
+      display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: rgba(255,255,255,0.75); font-size: 0.95rem;
+    }
+    .contact-item span.ci { font-size: 1.4rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060f16; color: rgba(255,255,255,0.45);
+      text-align: center; padding: 1.5rem;
+      font-size: 0.8rem; letter-spacing: 0.04em;
+    }
+    footer strong { color: var(--recycle); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .hero-symbol { font-size: 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVEGACIÓN ── -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    <span class="wave-icon">♻️</span>
+    Proyecto Ambiental 401
+  </a>
+  <ul>
+    <li><a href="#quienes">Nosotros</a></li>
+    <li><a href="#trabajamos">Trabajo</a></li>
+    <li><a href="#problemas">Problemas</a></li>
+    <li><a href="#ayuda">Ayuda</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#prensa">Prensa</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="hero-symbol">♻️</div>
+  <h1>Proyecto<br><span>Ambiental 401</span></h1>
+  <p class="hero-sub">"Somos la ola del cambio" 🌊</p>
+  <div class="hero-badges">
+    <span class="badge">🌊 Veracruz y el mundo</span>
+    <span class="badge">♻️ Reciclaje</span>
+    <span class="badge">🎓 Estudiantes de programación</span>
+  </div>
+  <a href="#quienes" class="btn-primary">Conoce el proyecto</a>
+
+  <!-- olas animadas -->
+  <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+    <path fill="rgba(232,247,240,0.15)" d="M0,64 C360,120 1080,0 1440,64 L1440,120 L0,120 Z"/>
+    <path fill="rgba(232,247,240,0.08)" d="M0,96 C480,40 960,100 1440,60 L1440,120 L0,120 Z"/>
+  </svg>
+</section>
+
+<!-- ── QUIÉNES SOMOS ── -->
+<section id="quienes">
+  <div class="container">
+    <p class="section-label">El equipo</p>
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-body">
+      Somos tres estudiantes de programación de Veracruz, comprometidos con el
+      cuidado del medio ambiente en nuestras zonas costeras. Creemos que la
+      tecnología y la conciencia ambiental pueden transformar nuestra comunidad.
+      Trabajamos para informar, inspirar y movilizar a las personas alrededor del reciclaje.
+    </p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">🧑‍💻</div>
+        <h3>Integrante 1</h3>
+        <p>Desarrollo de la página web y cartulina informativa</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">👩‍💻</div>
+        <h3>Integrante 2</h3>
+        <p>Contenido &amp; diseño</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🧑‍🎓</div>
+        <h3>Integrante 3</h3>
+        <p>Tríptico informativo sobre el tema</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EN QUÉ TRABAJAMOS ── -->
+<section id="trabajamos">
+  <div class="container">
+    <p class="section-label">Nuestra misión</p>
+    <h2 class="section-title">¿En qué trabajamos?</h2>
+    <p class="section-body">
+      Nos enfocamos en el reciclaje como motor de cambio en Veracruz, Boca del Río
+      y las zonas costeras del estado. Impulsamos hábitos responsables y difundimos
+      conocimiento para reducir el impacto ambiental en nuestros mares y playas.
+    </p>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-icon">♻️</div>
+        <h3>Reciclaje urbano</h3>
+        <p>Separación correcta de residuos en hogares, escuelas y espacios públicos.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">🌊</div>
+        <h3>Protección costera</h3>
+        <p>Cuidado de playas y ecosistemas marinos de Veracruz y Boca del Río.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">📢</div>
+        <h3>Concientización</h3>
+        <p>Campañas informativas para que más personas se unan al cambio.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-icon">🎓</div>
+        <h3>Educación ambiental</h3>
+        <p>Talleres, blog e investigación para estudiantes y comunidades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEMAS AMBIENTALES ── -->
+<section id="problemas">
+  <div class="container">
+    <p class="section-label">Situación actual</p>
+    <h2 class="section-title">Problemas ambientales en Veracruz</h2>
+    <p class="section-body">
+      Nuestras costas y comunidades enfrentan retos urgentes que requieren acción inmediata.
+    </p>
+    <div class="problem-list">
+      <div class="problem-item">
+        <div class="problem-num">1</div>
+        <div>
+          <h4>Contaminación de playas</h4>
+          <p>Acumulación de plásticos y residuos sólidos en las costas de Veracruz y Boca del Río.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">2</div>
+        <div>
+          <h4>Falta de cultura de reciclaje</h4>
+          <p>Gran parte de la población no separa sus residuos ni conoce los puntos de reciclaje.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">3</div>
+        <div>
+          <h4>Contaminación del agua</h4>
+          <p>Desechos industriales y domésticos afectan ríos y zonas costeras de la región.</p>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">4</div>
+        <div>
+          <h4>Daño a la fauna marina</h4>
+          <p>Los plásticos en el mar ponen en riesgo tortugas, peces y aves marinas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO AYUDAR ── -->
+<section id="ayuda">
+  <div class="container">
+    <p class="section-label">Tú puedes actuar</p>
+    <h2 class="section-title">¿Cómo puedes ayudar?</h2>
+    <p class="section-body">
+      Pequeñas acciones diarias generan grandes cambios. Aquí te decimos cómo sumarte
+      a la ola del cambio desde donde estés.
+    </p>
+    <div class="actions-grid">
+      <div class="action-card">
+        <div class="icon">🗑️</div>
+        <p>Separa tus residuos en orgánicos, inorgánicos y reciclables</p>
+      </div>
+      <div class="action-card">
+        <div class="icon">🛍️</div>
+        <p>Reduce el uso de plásticos de un solo uso</p>
+      </div>
+      <div class="action-card">
+        <div class="icon">💧</div>
+        <p>Ahorra agua en casa y en tu escuela</p>
+      </div>
+      <div class="action-card">
+        <div class="icon">📲</div>
+        <p>Comparte información ambiental en tus redes</p>
+      </div>
+      <div class="action-card">
+        <div class="icon">🌊</div>
+        <p>Participa en limpiezas de playas en Veracruz</p>
+      </div>
+      <div class="action-card">
+        <div class="icon">📖</div>
+        <p>Infórmate y educa a tu familia y amigos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG / INFÓRMATE ── -->
+<section id="blog">
+  <div class="container">
+    <p class="section-label">Conocimiento</p>
+    <h2 class="section-title">Infórmate</h2>
+    <p class="section-body">
+      Aquí encontrarás recursos para entender mejor los problemas ambientales
+      y cómo combatirlos desde nuestra región.
+    </p>
+    <div class="info-grid">
+      <div class="info-card">
+        <a href="blog.html">
+          <div class="info-card-top c1">📝</div>
+          <div class="info-card-body">
+            <h3>Blog</h3>
+            <p>Artículos, consejos y noticias sobre reciclaje y medio ambiente en Veracruz.</p>
+          </div>
+        </a>
+      </div>
+      <div class="info-card">
+        <a href="investigacion.html">
+          <div class="info-card-top c2">🔬</div>
+          <div class="info-card-body">
+            <h3>Investigación</h3>
+            <p>Estudios y datos sobre el estado ambiental de nuestras costas y comunidades.</p>
+          </div>
+        </a>
+      </div>
+      <div class="info-card">
+        <a href="problemas-ambientales.html">
+          <div class="info-card-top c3">🌍</div>
+          <div class="info-card-body">
+            <h3>Problemas Ambientales</h3>
+            <p>Análisis de las principales amenazas al ecosistema veracruzano.</p>
+          </div>
+        </a>
+      </div>
+      <div class="info-card">
+        <a href="prensa.html">
+          <div class="info-card-top c4">📰</div>
+          <div class="info-card-body">
+            <h3>Prensa</h3>
+            <p>Notas y comunicados sobre nuestras actividades y avances del proyecto.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRENSA ── -->
+<section id="prensa">
+  <div class="container">
+    <p class="section-label">Medios &amp; difusión</p>
+    <h2 class="section-title">Prensa</h2>
+    <p class="section-body">
+      Seguimos de cerca las noticias ambientales y compartimos nuestras acciones con la comunidad.
+    </p>
+    <div class="prensa-grid">
+      <div class="prensa-card">
+        <p class="prensa-tag">📢 Comunicado</p>
+        <h3>Lanzamiento oficial del Proyecto Ambiental 401 en Veracruz</h3>
+      </div>
+      <div class="prensa-card">
+        <p class="prensa-tag">🌊 Acción</p>
+        <h3>Campaña de reciclaje en zonas costeras de Boca del Río</h3>
+      </div>
+      <div class="prensa-card">
+        <p class="prensa-tag">🎓 Educación</p>
+        <h3>Estudiantes de programación lideran movimiento ambiental en Veracruz</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto">
+  <div class="container">
+    <p class="section-label">Encuéntranos</p>
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-body" style="color:rgba(255,255,255,0.65);">
+      ¿Quieres saber más, unirte o colaborar con nosotros? Estamos en Veracruz
+      y puedes encontrarnos a través de nuestros materiales y canales de difusión.
+    </p>
+    <div class="contact-info">
+      <div class="contact-item"><span class="ci">📍</span> Veracruz &amp; Boca del Río, México</div>
+      <div class="contact-item"><span class="ci">📄</span> Trípticos disponibles en tu escuela</div>
+      <div class="contact-item"><span class="ci">🖼️</span> Lona informativa en eventos</div>
+      <div class="contact-item"><span class="ci">💻</span> Blog y sitio en redes sociales (próximamente)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 <strong>Proyecto Ambiental 401</strong> — <em>"Somos la ola del cambio"</em> 🌊♻️ &nbsp;|&nbsp; Veracruz, México</p>
+</footer>
+
+</body>
+</html>

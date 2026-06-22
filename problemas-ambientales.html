@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Problemas Ambientales — Proyecto Ambiental 401</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap');
+    :root{--ocean:#0a7ea4;--foam:#e8f7f0;--kelp:#1e5c3a;--recycle:#4caf78;--dark:#0d1f2d;--white:#ffffff;--danger:#e05555;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--white);}
+
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(10,31,45,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0.9rem 2.5rem;}
+    .nav-logo{font-family:'Playfair Display',serif;color:var(--white);font-size:1rem;font-weight:700;text-decoration:none;}
+    .back-btn{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+    .back-btn:hover{color:var(--recycle);}
+
+    .hero{padding:8rem 1.5rem 4rem;background:linear-gradient(135deg,#0a4a6e,#1e5c3a);text-align:center;}
+    .hero-icon{font-size:4rem;margin-bottom:1rem;color:#fff;}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--white);margin-bottom:0.8rem;}
+    .hero p{color:rgba(255,255,255,0.7);font-size:1rem;max-width:550px;margin:0 auto;}
+
+    .container{max-width:960px;margin:0 auto;padding:4rem 1.5rem;}
+    .section-label{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--recycle);font-weight:500;margin-bottom:0.5rem;}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--dark);margin-bottom:2rem;}
+
+    /* Problema cards */
+    .problema-list{display:flex;flex-direction:column;gap:2rem;margin-bottom:4rem;}
+    .problema-card{border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,0.07);}
+    .problema-header{padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1rem;}
+    .ph-verde{background:linear-gradient(135deg,#1e5c3a,#4caf78);}
+    .ph-azul{background:linear-gradient(135deg,#0a4a6e,#0a7ea4);}
+    .ph-naranja{background:linear-gradient(135deg,#c0582a,#e8843a);}
+    .ph-rojo{background:linear-gradient(135deg,#8b2020,#e05555);}
+    .ph-teal{background:linear-gradient(135deg,#0a7ea4,#23d5ab);}
+    .problema-icon{font-size:2.5rem;color:#fff;}
+    .problema-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);}
+    .problema-body{padding:1.5rem 1.8rem;background:#f8fafb;}
+    .problema-body p{font-size:0.9rem;color:#3a4a58;line-height:1.7;margin-bottom:1rem;}
+    .causa-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ocean);font-weight:600;margin-bottom:0.5rem;}
+    .causa-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem;padding-left:1rem;}
+    .causa-list li{font-size:0.85rem;color:#5a7080;position:relative;padding-left:1.2rem;}
+    .causa-list li::before{content:"→";position:absolute;left:0;color:var(--recycle);}
+    .solucion-box{background:var(--foam);border-radius:10px;padding:1rem 1.2rem;margin-top:1rem;}
+    .solucion-box p{font-size:0.85rem;color:var(--kelp);line-height:1.6;margin:0;}
+    .solucion-box strong{color:var(--kelp);}
+
+    /* Urgencia */
+    .urgencia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+    .urgencia-card{background:linear-gradient(135deg,var(--dark),#0a4a6e);border-radius:14px;padding:1.5rem;text-align:center;color:var(--white);}
+    .urgencia-card .icon{font-size:2rem;margin-bottom:0.5rem;}
+    .urgencia-card p{font-size:0.85rem;opacity:0.85;line-height:1.5;}
+
+    footer{background:#060f16;color:rgba(255,255,255,0.4);text-align:center;padding:1.5rem;font-size:0.8rem;}
+    footer strong{color:var(--recycle);}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="proyectoR.html" class="nav-logo">♻️ Proyecto Ambiental 401</a>
+  <a href="proyectoR.html" class="back-btn">← Volver al inicio</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-icon">🌍</div>
+  <h1>Problemas Ambientales</h1>
+  <p>Conoce las principales amenazas al ecosistema de Veracruz y qué podemos hacer al respecto.</p>
+</div>
+
+<div class="container">
+
+  <p class="section-label">Situación actual</p>
+  <h2 class="section-title">Principales problemáticas en Veracruz</h2>
+
+  <div class="problema-list">
+
+    <div class="problema-card">
+      <div class="problema-header ph-verde">
+        <div class="problema-icon">🗑️</div>
+        <h2>Contaminación por residuos plásticos</h2>
+      </div>
+      <div class="problema-body">
+        <p>Los plásticos de un solo uso son el principal contaminante en las playas y mares de Veracruz. Bolsas, botellas y empaques llegan al océano dañando ecosistemas enteros.</p>
+        <p class="causa-label">Causas principales</p>
+        <ul class="causa-list">
+          <li>Falta de cultura de reciclaje en la población</li>
+          <li>Manejo inadecuado de la basura en zonas costeras</li>
+          <li>Escasez de puntos de recolección diferenciada</li>
+        </ul>
+        <div class="solucion-box">
+          <p><strong>¿Qué puedes hacer?</strong> Lleva bolsas reutilizables, rechaza el popote de plástico y deposita tu basura en los contenedores correctos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="problema-card">
+      <div class="problema-header ph-azul">
+        <div class="problema-icon">💧</div>
+        <h2>Contaminación del agua</h2>
+      </div>
+      <div class="problema-body">
+        <p>Ríos y costas de Veracruz reciben descargas de aguas residuales domésticas e industriales que afectan la calidad del agua y la salud de los ecosistemas acuáticos.</p>
+        <p class="causa-label">Causas principales</p>
+        <ul class="causa-list">
+          <li>Descargas industriales sin tratamiento adecuado</li>
+          <li>Drenajes que desembocan directamente en el mar</li>
+          <li>Uso excesivo de fertilizantes en zonas agrícolas cercanas</li>
+        </ul>
+        <div class="solucion-box">
+          <p><strong>¿Qué puedes hacer?</strong> No tires aceite ni químicos por el drenaje, ahorra agua y reporta descargas ilegales a las autoridades.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="problema-card">
+      <div class="problema-header ph-naranja">
+        <div class="problema-icon">🐠</div>
+        <h2>Daño a la fauna marina</h2>
+      </div>
+      <div class="problema-body">
+        <p>Tortugas, delfines, aves marinas y peces sufren las consecuencias de la contaminación. Ingieren plásticos o quedan atrapados en redes y desechos abandonados en el mar.</p>
+        <p class="causa-label">Causas principales</p>
+        <ul class="causa-list">
+          <li>Plásticos confundidos con alimento por animales marinos</li>
+          <li>Redes de pesca abandonadas en el océano</li>
+          <li>Destrucción del hábitat por contaminación</li>
+        </ul>
+        <div class="solucion-box">
+          <p><strong>¿Qué puedes hacer?</strong> Participa en limpiezas de playa, consume productos del mar con certificación responsable y evita el uso de plásticos desechables.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="problema-card">
+      <div class="problema-header ph-rojo">
+        <div class="problema-icon">🌡️</div>
+        <h2>Cambio climático en la zona costera</h2>
+      </div>
+      <div class="problema-body">
+        <p>El aumento de la temperatura del mar y la acidificación del océano afectan los arrecifes de coral del Golfo de México y alteran los patrones climáticos de la región veracruzana.</p>
+        <p class="causa-label">Causas principales</p>
+        <ul class="causa-list">
+          <li>Emisiones de gases de efecto invernadero</li>
+          <li>Deforestación en zonas cercanas a la costa</li>
+          <li>Consumo energético sin fuentes renovables</li>
+        </ul>
+        <div class="solucion-box">
+          <p><strong>¿Qué puedes hacer?</strong> Reduce tu huella de carbono usando transporte público, ahorra energía y planta árboles en tu comunidad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="problema-card">
+      <div class="problema-header ph-teal">
+        <div class="problema-icon">🏭</div>
+        <h2>Falta de infraestructura de reciclaje</h2>
+      </div>
+      <div class="problema-body">
+        <p>Veracruz carece de suficientes centros de acopio y reciclaje. La mayoría de los residuos reciclables terminan en el mismo relleno sanitario junto con la basura general.</p>
+        <p class="causa-label">Causas principales</p>
+        <ul class="causa-list">
+          <li>Inversión insuficiente en infraestructura ambiental</li>
+          <li>Falta de programas de separación desde el origen</li>
+          <li>Desconocimiento de los puntos de reciclaje existentes</li>
+        </ul>
+        <div class="solucion-box">
+          <p><strong>¿Qué puedes hacer?</strong> Busca los centros de acopio en tu municipio, separa tus residuos y exige a tu gobierno mejores servicios de reciclaje.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Urgencia -->
+  <p class="section-label">Actúa ahora</p>
+  <h2 class="section-title">El momento es hoy</h2>
+  <div class="urgencia-grid">
+    <div class="urgencia-card"><div class="icon">⏰</div><p>Cada minuto se vierten 15 toneladas de plástico al océano en el mundo</p></div>
+    <div class="urgencia-card"><div class="icon">🌊</div><p>Para 2050 habrá más plástico que peces en el mar si no actuamos</p></div>
+    <div class="urgencia-card"><div class="icon">🤝</div><p>Cada acción individual suma: reciclar hoy protege el Veracruz de mañana</p></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 <strong>Proyecto Ambiental 401</strong> — <em>"Somos la ola del cambio"</em> 🌊♻️</p>
+</footer>
+</body>
+</html>

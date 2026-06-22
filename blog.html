@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — Proyecto Ambiental 401</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+    :root{--ocean:#0a7ea4;--foam:#e8f7f0;--kelp:#1e5c3a;--recycle:#4caf78;--dark:#0d1f2d;--white:#fff;--sand:#f5f0e8;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--white);}
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(10,31,45,.96);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;}
+    .nav-logo{font-family:'Playfair Display',serif;color:#fff;font-size:1rem;font-weight:700;text-decoration:none;}
+    .back-btn{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;border:1px solid rgba(255,255,255,.3);padding:.4rem 1rem;border-radius:999px;transition:color .2s,border-color .2s;}
+    .back-btn:hover{color:var(--recycle);border-color:var(--recycle);}
+    .hero{padding:8rem 1.5rem 5rem;background:linear-gradient(135deg,#0d1f2d,#0a4a6e 60%,#23a6d5);text-align:center;}
+    .hero span.icon{font-size:5rem;display:block;margin-bottom:1rem;color:#fff;}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;margin-bottom:1rem;}
+    .hero p{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:600px;margin:0 auto 1.5rem;line-height:1.7;}
+    .hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+    .hstat strong{display:block;font-size:1.8rem;color:var(--recycle);font-family:'Playfair Display',serif;}
+    .hstat span{font-size:.8rem;color:rgba(255,255,255,.65);}
+    .container{max-width:1100px;margin:0 auto;padding:4rem 1.5rem;}
+    .slabel{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--recycle);font-weight:600;margin-bottom:.5rem;}
+    .stitle{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3.5vw,2.5rem);color:var(--dark);margin-bottom:.6rem;}
+    .ssub{color:#5a7080;font-size:.95rem;line-height:1.7;max-width:700px;margin-bottom:2.5rem;}
+    .tag{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;padding:.2rem .7rem;border-radius:999px;margin-bottom:.6rem;}
+    .tr{background:#e8f7f0;color:var(--kelp);}
+    .to{background:#e0f2fa;color:var(--ocean);}
+    .tg{background:#fff0e0;color:#c0582a;}
+    .tp{background:#f0e8ff;color:#6a35a8;}
+    .td{background:#ffe8e8;color:#c02020;}
+    .tt{background:#e0fff8;color:#0a7070;}
+    .date{font-size:.75rem;color:#8aa0b0;margin-top:.6rem;display:block;}
+    .featured{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:4rem;}
+    @media(max-width:700px){.featured{grid-template-columns:1fr;}}
+    .feat-main{border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12);grid-row:span 2;}
+    .feat-main .fimg{height:260px;background:linear-gradient(135deg,#0a4a6e,#23d5ab);display:flex;align-items:center;justify-content:center;font-size:5rem;color:#fff;}
+    .feat-main .fbody{padding:2rem;}
+    .feat-main h2{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--dark);margin-bottom:.8rem;line-height:1.3;}
+    .feat-main p{font-size:.9rem;color:#3a4a58;line-height:1.8;margin-bottom:.8rem;}
+    .feat-s{border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);display:flex;}
+    .feat-s .simg{min-width:110px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;}
+    .feat-s .sbody{padding:1.2rem;}
+    .feat-s h3{font-size:.95rem;color:var(--dark);line-height:1.4;margin-bottom:.4rem;}
+    .feat-s p{font-size:.8rem;color:#5a7080;line-height:1.5;}
+    .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.8rem;margin-bottom:4rem;}
+    .acard{border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.07);transition:transform .25s,box-shadow .25s;}
+    .acard:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(0,0,0,.12);}
+    .aimg{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;color:#fff;}
+    .g1{background:linear-gradient(135deg,#23a6d5,#23d5ab);}
+    .g2{background:linear-gradient(135deg,#4caf78,#1e5c3a);}
+    .g3{background:linear-gradient(135deg,#0a7ea4,#23a6d5);}
+    .g4{background:linear-gradient(135deg,#f5a623,#e8643a);}
+    .g5{background:linear-gradient(135deg,#1e5c3a,#0a7ea4);}
+    .g6{background:linear-gradient(135deg,#23d5ab,#0a7ea4);}
+    .g7{background:linear-gradient(135deg,#6a35a8,#23a6d5);}
+    .g8{background:linear-gradient(135deg,#e05555,#f5a623);}
+    .g9{background:linear-gradient(135deg,#0d1f2d,#1e5c3a);}
+    .g10{background:linear-gradient(135deg,#23a6d5,#6a35a8);}
+    .g11{background:linear-gradient(135deg,#4caf78,#23d5ab);}
+    .g12{background:linear-gradient(135deg,#f5a623,#4caf78);}
+    .abody{padding:1.4rem;}
+    .abody h3{font-size:1rem;color:var(--dark);line-height:1.4;margin-bottom:.5rem;font-weight:600;}
+    .abody p{font-size:.84rem;color:#5a7080;line-height:1.65;}
+    .tips-section{background:var(--foam);border-radius:24px;padding:3rem;margin-bottom:4rem;}
+    .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.2rem;margin-top:1.5rem;}
+    .tcard{background:#fff;border-radius:14px;padding:1.4rem;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+    .tnum{width:32px;height:32px;border-radius:50%;background:var(--recycle);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;margin-bottom:.7rem;}
+    .tcard h4{font-size:.92rem;color:var(--dark);margin-bottom:.4rem;font-weight:600;}
+    .tcard p{font-size:.82rem;color:#5a7080;line-height:1.6;}
+    .glosary{margin-bottom:4rem;}
+    .ggl{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;margin-top:1.5rem;}
+    .gi{border:1.5px solid #e0eeea;border-radius:12px;padding:1.2rem 1.4rem;transition:border-color .2s;}
+    .gi:hover{border-color:var(--recycle);}
+    .gi h4{font-size:.95rem;color:var(--ocean);font-weight:700;margin-bottom:.4rem;}
+    .gi p{font-size:.83rem;color:#4a6070;line-height:1.6;}
+    .nl{background:linear-gradient(135deg,var(--dark),#0a4a6e);border-radius:24px;padding:3rem;text-align:center;color:#fff;margin-bottom:4rem;}
+    .nl h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:.8rem;}
+    .nl p{color:rgba(255,255,255,.75);margin-bottom:1rem;font-size:.95rem;line-height:1.7;}
+    .nl small{font-size:.78rem;opacity:.5;}
+    footer{background:#060f16;color:rgba(255,255,255,.4);text-align:center;padding:1.8rem;font-size:.8rem;}
+    footer strong{color:var(--recycle);}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="proyectoR.html" class="nav-logo">♻️ Proyecto Ambiental 401</a>
+  <a href="proyectoR.html" class="back-btn">← Volver al inicio</a>
+</nav>
+<div class="hero">
+  <span class="icon">📝</span>
+  <h1>Blog Ambiental</h1>
+  <p>El espacio de información, consejos y noticias sobre reciclaje, medio ambiente y sustentabilidad en Veracruz y el mundo. Aquí encontrarás todo lo que necesitas saber para ser parte del cambio.</p>
+  <div class="hero-stats">
+    <div class="hstat"><strong>12+</strong><span>Artículos</span></div>
+    <div class="hstat"><strong>5</strong><span>Categorías</span></div>
+    <div class="hstat"><strong>100%</strong><span>Contenido local</span></div>
+  </div>
+</div>
+<div class="container">
+  <p class="slabel">Artículos destacados</p>
+  <h2 class="stitle">Lo más importante esta semana</h2>
+  <p class="ssub">Selección especial de nuestros artículos más relevantes sobre la situación ambiental en Veracruz y cómo podemos actuar desde casa.</p>
+  <div class="featured">
+    <div class="feat-main">
+      <div class="fimg">🌎</div>
+      <div class="fbody">
+        <span class="tag to">🌍 Costas de Veracruz</span>
+        <h2>El plástico en las playas de Veracruz: una crisis que no podemos ignorar</h2>
+        <p>Cada fin de semana miles de visitantes disfrutan las playas de Veracruz y Boca del Río, pero lo que no se ve a simple vista es la enorme cantidad de microplásticos que han penetrado la arena y el mar.</p>
+        <p>Los residuos plásticos no solo afectan el paisaje: dañan a la fauna marina, contaminan el agua que consumimos y liberan toxinas que entran en la cadena alimenticia.</p>
+        <p>En este artículo exploramos el origen del problema, su impacto real en las costas veracruzanas y las acciones concretas que como comunidad podemos tomar para revertir el daño.</p>
+        <span class="date">📅 Junio 2026 · 8 min de lectura</span>
+      </div>
+    </div>
+    <div class="feat-s">
+      <div class="simg g2">♻️</div>
+      <div class="sbody">
+        <span class="tag tr">♻️ Reciclaje</span>
+        <h3>Guía completa para separar correctamente tus residuos en casa</h3>
+        <p>Aprende qué va en cada contenedor y por qué importa tanto la separación correcta desde el origen.</p>
+        <span class="date">📅 Junio 2026</span>
+      </div>
+    </div>
+    <div class="feat-s">
+      <div class="simg g4">🐢</div>
+      <div class="sbody">
+        <span class="tag tg">🐢 Fauna</span>
+        <h3>Las tortugas marinas de Veracruz en peligro por nuestra basura</h3>
+        <p>Cada año decenas de tortugas mueren en nuestras costas por ingerir plásticos. Conoce cómo protegerlas.</p>
+        <span class="date">📅 Mayo 2026</span>
+      </div>
+    </div>
+  </div>
+  <p class="slabel">Todos los artículos</p>
+  <h2 class="stitle">Explora nuestro contenido</h2>
+  <p class="ssub">Desde consejos prácticos hasta investigaciones profundas, aquí encontrarás información confiable y útil sobre el medio ambiente en nuestra región veracruzana.</p>
+  <div class="articles-grid">
+    <div class="acard"><div class="aimg g1">♻️</div><div class="abody"><span class="tag tr">♻️ Reciclaje</span><h3>Cómo separar correctamente tus residuos en casa</h3><p>Aprende la diferencia entre residuos orgánicos, inorgánicos y reciclables. La separación en origen es el primer paso para un reciclaje efectivo. En México solo el 10% de los residuos se recicla correctamente.</p><span class="date">📅 Junio 2026 · 5 min</span></div></div>
+    <div class="acard"><div class="aimg g2">🌊</div><div class="abody"><span class="tag to">🌊 Costas</span><h3>El plástico en las playas de Veracruz: una crisis silenciosa</h3><p>Cada año toneladas de plástico llegan a nuestras costas desde ríos, drenajes y visitantes irresponsables. Conoce el impacto real y qué organizaciones ya trabajan para limpiar nuestras playas.</p><span class="date">📅 Junio 2026 · 7 min</span></div></div>
+    <div class="acard"><div class="aimg g3">🐠</div><div class="abody"><span class="tag tg">🐠 Fauna Marina</span><h3>Las tortugas marinas del Golfo de México en peligro</h3><p>Las bolsas de plástico son confundidas con medusas por las tortugas lora y caguama. Descubre cómo protegerlas y qué hacer si encuentras una tortuga herida.</p><span class="date">📅 Mayo 2026 · 6 min</span></div></div>
+    <div class="acard"><div class="aimg g4">💧</div><div class="abody"><span class="tag to">💧 Agua</span><h3>10 hábitos para ahorrar agua en tu día a día en Veracruz</h3><p>El agua potable es un recurso cada vez más escaso. Conoce los hábitos más efectivos para reducir el consumo y proteger las comunidades costeras.</p><span class="date">📅 Mayo 2026 · 4 min</span></div></div>
+    <div class="acard"><div class="aimg g5">🌿</div><div class="abody"><span class="tag tr">🌿 Composta</span><h3>Cómo hacer composta en casa: guía paso a paso</h3><p>El 60% de los residuos domésticos son orgánicos y pueden transformarse en abono natural en lugar de terminar en el relleno sanitario.</p><span class="date">📅 Mayo 2026 · 9 min</span></div></div>
+    <div class="acard"><div class="aimg g6">🧹</div><div class="abody"><span class="tag tt">🧹 Comunidad</span><h3>Cómo organizar una limpieza de playa en Boca del Río</h3><p>Guía práctica para convocar, organizar y ejecutar una jornada de limpieza costera con tu comunidad.</p><span class="date">📅 Abril 2026 · 6 min</span></div></div>
+    <div class="acard"><div class="aimg g7">🔄</div><div class="abody"><span class="tag tp">🔄 Sustentabilidad</span><h3>Qué es la economía circular y por qué es la solución al problema de la basura</h3><p>El modelo lineal de producción está destruyendo el planeta. La economía circular propone un sistema donde nada se desperdicia.</p><span class="date">📅 Abril 2026 · 8 min</span></div></div>
+    <div class="acard"><div class="aimg g8">🚫</div><div class="abody"><span class="tag td">🚫 Contaminación</span><h3>Los 5 plásticos más contaminantes y cómo evitarlos</h3><p>Popotes, bolsas de un solo uso, botellas PET, unicel y cubiertos desechables encabezan la lista de los plásticos más dañinos para el ambiente marino.</p><span class="date">📅 Abril 2026 · 5 min</span></div></div>
+    <div class="acard"><div class="aimg g9">🌡️</div><div class="abody"><span class="tag td">🌡️ Clima</span><h3>Cambio climático en Veracruz: lo que los datos nos dicen</h3><p>La temperatura promedio del Golfo de México ha aumentado 1.2°C en los últimos 50 años. Analizamos su impacto en la vida cotidiana veracruzana.</p><span class="date">📅 Marzo 2026 · 10 min</span></div></div>
+    <div class="acard"><div class="aimg g10">🎓</div><div class="abody"><span class="tag tp">🎓 Educación</span><h3>Cómo hablar de medio ambiente con niños y jóvenes</h3><p>Herramientas, dinámicas y actividades para hablar de reciclaje, contaminación y sustentabilidad con niños de todas las edades.</p><span class="date">📅 Marzo 2026 · 7 min</span></div></div>
+    <div class="acard"><div class="aimg g11">🐟</div><div class="abody"><span class="tag to">🐟 Biodiversidad</span><h3>Especies marinas en peligro en el Golfo de México</h3><p>El manatí, el tiburón ballena y múltiples especies de aves marinas están amenazadas por la pérdida de hábitat y la contaminación.</p><span class="date">📅 Febrero 2026 · 8 min</span></div></div>
+    <div class="acard"><div class="aimg g12">🛍️</div><div class="abody"><span class="tag tr">🛍️ Consumo</span><h3>Guía de consumo responsable para familias en Veracruz</h3><p>Te enseñamos a leer etiquetas ecológicas, elegir productos con menos empaque y apoyar a productores locales sin gastar más.</p><span class="date">📅 Febrero 2026 · 6 min</span></div></div>
+  </div>
+  <div class="tips-section">
+    <p class="slabel">Tips rápidos</p>
+    <h2 class="stitle">20 acciones que puedes hacer HOY</h2>
+    <p class="ssub">No necesitas esperar. Aquí tienes acciones concretas y gratuitas que puedes comenzar ahora mismo para reducir tu impacto ambiental en Veracruz.</p>
+    <div class="tips-grid">
+      <div class="tcard"><div class="tnum">1</div><h4>Lleva tu bolsa de tela</h4><p>Siempre lleva una bolsa reutilizable al mercado o supermercado para evitar bolsas de plástico de un solo uso.</p></div>
+      <div class="tcard"><div class="tnum">2</div><h4>Rechaza el popote</h4><p>Di sin popote en restaurantes y café. Si necesitas uno, usa de acero inoxidable o bambú reutilizable.</p></div>
+      <div class="tcard"><div class="tnum">3</div><h4>Separa tu basura</h4><p>Coloca dos contenedores en casa: uno para orgánicos y otro para inorgánicos. Empieza hoy mismo sin excusas.</p></div>
+      <div class="tcard"><div class="tnum">4</div><h4>Cierra la llave</h4><p>Mientras te cepillas los dientes o enjabonas los trastes, cierra el agua. Son hasta 12 litros por cada vez.</p></div>
+      <div class="tcard"><div class="tnum">5</div><h4>Comparte en redes</h4><p>Publica información ambiental en tus redes. Un post puede cambiar el hábito de alguien en tu comunidad.</p></div>
+      <div class="tcard"><div class="tnum">6</div><h4>Recoge basura en la playa</h4><p>Cuando vayas a la playa veracruzana, lleva una bolsa extra y recoge los residuos que encuentres en la arena.</p></div>
+      <div class="tcard"><div class="tnum">7</div><h4>Usa botella reutilizable</h4><p>Invierte en una botella de acero o vidrio. Evita comprar agua embotellada en plástico desechable cada día.</p></div>
+      <div class="tcard"><div class="tnum">8</div><h4>Apaga luces innecesarias</h4><p>Apaga la luz al salir de un cuarto. El ahorro eléctrico reduce la demanda de energía y las emisiones de CO2.</p></div>
+      <div class="tcard"><div class="tnum">9</div><h4>Composta tus residuos</h4><p>Las cáscaras de frutas y verduras pueden convertirse en abono para tus plantas en pocas semanas fácilmente.</p></div>
+      <div class="tcard"><div class="tnum">10</div><h4>Infórmate y educa</h4><p>Leer artículos como este y compartirlos con tu familia y amigos multiplica enormemente el impacto positivo.</p></div>
+    </div>
+  </div>
+  <div class="glosary">
+    <p class="slabel">Glosario ambiental</p>
+    <h2 class="stitle">Términos clave que debes conocer</h2>
+    <p class="ssub">Para entender el problema ambiental es importante conocer el vocabulario. Aquí los términos más usados explicados de forma sencilla y clara.</p>
+    <div class="ggl">
+      <div class="gi"><h4>Economía circular</h4><p>Sistema que promueve reducir, reutilizar y reciclar para que los materiales no se desperdicien.</p></div>
+      <div class="gi"><h4>Microplásticos</h4><p>Partículas pequeñas de plástico que contaminan aguas, suelos y organismos marinos.</p></div>
+      <div class="gi"><h4>Huella ecológica</h4><p>Medida del impacto que tienen nuestras actividades en el medio ambiente.</p></div>
+      <div class="gi"><h4>Contaminación</h4><p>Presencia de sustancias dañinas en el aire, el agua o el suelo que afectan la salud y el ecosistema.</p></div>
+    </div>
+  </div>
+  <div class="nl">
+    <h2>Únete a la ola del cambio</h2>
+    <p>Recibe más consejos y noticias ambientales directamente en tu correo.</p>
+    <small>Próximamente activaremos el formulario de suscripción.</small>
+  </div>
+</div>
+<footer>
+  <p>© 2026 <strong>Proyecto Ambiental 401</strong> — <em>"Somos la ola del cambio"</em> 🌊♻️</p>
+</footer>
+</body>
+</html>
